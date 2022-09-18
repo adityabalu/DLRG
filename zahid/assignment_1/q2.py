@@ -1,16 +1,19 @@
-def concat_string(a, b):
+class concat_string:
+    def con_str(self, a, b):
+        self.a =a
+        self.b=b
 
-    out=[]
+        out=[]
 
-    for x,y in zip(a, b):
+        for x,y in zip(a, b):
+            out.append(str(x.lower()+' '+ y.lower()))
+        if len(out) == len(self.a):
+            return(out)
 
-       out.append(str(x.lower()+' '+ y.lower()))
-       if len(out) == len(a):
-        return(out)
+method = concat_string()
 
 #inputs
-a = ['HellO', 'BYe']
-b = ['woRlD', 'WOrld']
+m = ['HellO', 'BYe']
+n = ['woRlD', 'WOrld']
 
-if __name__ == '__main__':
-    print(concat_string(a, b))
+print(method.con_str(m,n))
