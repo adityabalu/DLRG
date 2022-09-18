@@ -13,6 +13,8 @@ class chapter_num():
 
 
 method = chapter_num()
-#inputs
+
 n=3
-print(method.chp_num(n))
+
+if __name__== "__main__":
+    print(method.chp_num(n))
