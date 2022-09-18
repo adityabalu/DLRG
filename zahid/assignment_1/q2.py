@@ -18,3 +18,6 @@ n = ['woRlD', 'WOrld']
 
 if __name__== "__main__":
     print(method.con_str(m,n))
+
+# sample output:
+# ['hello world', 'bye world']

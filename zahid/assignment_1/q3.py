@@ -30,5 +30,5 @@ b = ['2', '3', '4', 5, '[6', 12, 14]
 if __name__== "__main__":
     print(method.mat_pro(a,b))
 
-
-
+# sample output:
+# [24, 39, 20]
