@@ -18,3 +18,6 @@ n=3
 
 if __name__== "__main__":
     print(method.chp_num(n))
+
+# sample output:
+# ['Chapter 1', 'Chapter 2', 'Chapter 3', 'Chapter 4']
