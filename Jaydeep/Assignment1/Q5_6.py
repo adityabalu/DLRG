@@ -63,6 +63,6 @@ class tetMesh():
 if __name__ == '__main__':
 	filename = 'mesh.dat'
 	tetMesh1 = tetMesh(filename)
-	mesh = tetMesh1.readdat(filename)
+	nodes, elems = tetMesh1.readdat(filename)
 	print(tetMesh1)
 	
