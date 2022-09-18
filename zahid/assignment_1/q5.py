@@ -32,6 +32,10 @@ class Calculator:
 
 if __name__ == '__main__':
     calc = Calculator()
-    calc.get_time(10)
+    calc.get_time(5)
 
+# sample output:
 
+# ['Chapter 1', 'Chapter 2', 'Chapter 3', 'Chapter 4', 'Chapter 5', 'Chapter 6']
+
+#  method executes in 0.00005817 seconds
