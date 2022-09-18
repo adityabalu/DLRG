@@ -16,4 +16,5 @@ method = concat_string()
 m = ['HellO', 'BYe']
 n = ['woRlD', 'WOrld']
 
-print(method.con_str(m,n))
+if __name__== "__main__":
+    print(method.con_str(m,n))

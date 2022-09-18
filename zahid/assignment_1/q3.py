@@ -26,5 +26,9 @@ method= match_product()
 a = ['12', '13', 'Hello', '4', '6', '10]']
 b = ['2', '3', '4', 5, '[6', 12, 14]
 
-print(method.mat_pro(a,b))
+
+if __name__== "__main__":
+    print(method.mat_pro(a,b))
+
+
 
