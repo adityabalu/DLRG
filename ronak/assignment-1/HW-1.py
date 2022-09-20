@@ -5,6 +5,32 @@
 
 ######################
 
+#%%
+
+#################
+# Helper Function
+#################
+
+import warnings
+warnings.filterwarnings("ignore")
+
+from heapq import *
+class MedianFinder(object):
+
+    def __init__(self):
+        self.heaps = [], []
+        
+    def addNum(self, num):
+        left, right = self.heaps # min heap
+        heappush(left, -heappushpop(right, num))
+        if len(right) < len(left):
+            heappush(right, -heappop(left))
+
+    def findMedian(self):
+        left, right = self.heaps
+        if len(right) > len(left):
+            return float(right[0])
+        return (right[0] - left[0])/2.0  
 
 
 #%%
@@ -254,7 +280,7 @@ def read_fem(fname):
   return mesh_nodes_LoL, mesh_connectivity_LoL
 
         
-collected_nodes, collected_mesh = read_fem('mesh.dat')
+collected_nodes, collected_mesh = read_fem('/home/ronak/Downloads/DL- Reading-Group/dlrg/mesh.dat')
 
 
 
@@ -265,11 +291,12 @@ collected_nodes, collected_mesh = read_fem('mesh.dat')
 import time
 
 def timeit(func):
-    def wrapper():
+    def wrapper(*args, **kwargs):
         start_time = time.time()
-        func()
+        result = func(*args, **kwargs)
         end_time = time.time()
         print('Execution time: {} seconds'.format(end_time - start_time))
+        return result
     return wrapper
 
 
@@ -339,7 +366,7 @@ prod_list3(list_1,list_2)
 
 
 #8b
-
+#%%
 @timeit
 def read_fem(fname):
 
@@ -374,16 +401,18 @@ def read_fem(fname):
   return mesh_nodes_LoL, mesh_connectivity_LoL
 
         
-collected_nodes, collected_mesh = read_fem('mesh.dat')
+collected_nodes, collected_mesh = read_fem('/home/ronak/Downloads/DL- Reading-Group/dlrg/mesh.dat')
 
+#%%
 
 #8c
 @timeit
 def samp_randuni(samp_length = 10000):
   return [np.random.uniform(-1,1) for t in range(samp_length)]
+  
+ds1 = samp_randuni(10000)
 
-ds1 = samp_randuni()
-
+#%%
  
 #8d
 @timeit
@@ -392,18 +421,22 @@ def samp_randuni2(samp_length = 10000):
 
 ds2 = samp_randuni2()
 
-
+#%%
 
 #8e
+
 @timeit
-def findMedianElement(inSet):
-  lenSet = len(inSet)
-  mid_elem = np.ceil(lenSet/2) - 1
-  return inSet[mid_elem]
+def medianFinder(dset):
+    obj = MedianFinder()
+    for t in range(len(dset)):
+        obj.addNum(dset[t])
+    #Return Medians from
+    return obj.findMedian()
 
-findMedianElement(ds1)
-findMedianElement(ds2)
+print(medianFinder(ds1))
+print(medianFinder(ds2))
 
+#%%
 
 #8f
 '''
@@ -411,16 +444,17 @@ Both lists and dictionaries are good candidates, but adding to a list is easier 
 But Dictionaries have better lookup speed while retrieving data. Hence, if we need frequent lookups, dictionary might be a better choice.
 '''
 
+#%%
 #8g
 
 @timeit
 def gen_samples(stype: str):
     if stype == 'gauss':
-        return [random.gauss(0,1) for r in range(1000)]
+        return np.array([random.gauss(0,1) for r in range(1000)])
     elif stype == 'lognorm':
-        return [random.lognormvariate(0,1) for r in range(1000)]
+        return np.array([random.lognormvariate(0,1) for r in range(1000)])
     else:
-        return [random.normalvariate(0,1) for r in range(1000)]
+        return np.array([random.normalvariate(0,1) for r in range(1000)])
 
 dists = {
         'gauss': gen_samples('gauss'),
@@ -428,38 +462,21 @@ dists = {
         'normalvariate' : gen_samples('normvar')
 }
 
-
-
+#%%
 
 #8h
-# Referred to the wiki - https://towardsdatascience.com/kl-divergence-python-example-b87069e4b810 
 
 import matplotlib.pyplot as plt
 from scipy.stats import norm
+import sklearn.metrics
 
 @timeit
 def kl_divergence(p, q):
-  return np.sum(np.where(p != 0, p * np.log(p / q), 0))
+  return sklearn.metrics.mutual_info_score(p,q)
 
-
-kl_divergence(dists['gauss'],dists['lognormalvariate'])
-kl_divergence(dists['gauss'],dists['normalvariate'])
-kl_divergence(dists['lognormalvariate'],dists['normalvariate'])
-
-
-'''
-#Testing the function
-
-x = np.arange(-10, 10, 0.001)
-p = norm.pdf(x, 0, 2)
-q = norm.pdf(x, 2, 2)
-
-plt.title('KL(P||Q) = %1.3f' % kl_divergence(p, q))
-plt.plot(x, p)
-plt.plot(x, q, c='red')
-plt.show()
-'''
-
+print(kl_divergence(dists['gauss'],dists['lognormalvariate']))
+print(kl_divergence(dists['gauss'],dists['normalvariate']))
+print(kl_divergence(dists['lognormalvariate'],dists['normalvariate']))
 
 
 #%%
@@ -510,4 +527,5 @@ class Robot:
 myRobot = Robot()
 # Executing the motion of the Robot along a square trajectory
 myRobot.move_square(20)
+
 
