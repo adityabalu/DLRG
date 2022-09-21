@@ -1,0 +1,24 @@
+# With help from https://www.youtube.com/watch?v=yaXpJSXcD48&ab_channel=CodeSetup
+
+def strobogram(n):  
+    if n == 0:
+        return[""]
+    elif n ==1:
+        return["0","1","8"]
+    else:
+        output = list()
+        centres = list(strobogram(n-2))    # Reusing the function , this idea is taken
+        if n-2 >= 2:
+            numzero = str(0).zfill(n-2)      # This part is new in the code
+            centres.append(numzero)
+
+        for centre in centres:                   # This part is common across all such codes
+            output.append("1" + centre + "1")
+            output.append("6" + centre + "9")
+            output.append("8" + centre + "8")
+            output.append("9" + centre + "6")
+    return output
+
+
+digit = int(input("Enter number of digits: "))
+print(strobogram(digit))

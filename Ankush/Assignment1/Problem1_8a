@@ -1,0 +1,46 @@
+import time
+import random
+
+def timeit(func):
+    def timetakencalc(*args,**kwargs):
+        time_start = time.time()
+        func(*args,**kwargs)
+        time_end = time.time()
+        print("Time taken by the function",func.__name__, " is: ", time_end - time_start, " seconds")
+
+    return timetakencalc
+
+ls1 = list()
+ls2 = list()
+n = 1000
+for i in range(n):
+    ls1.append(random.randint(0,10))
+    ls2.append(random.randint(0,10))
+
+
+
+@timeit
+def product1(a,b):
+    result1 = list()
+    for i,j in zip(a,b):
+        result1.append(i*j)
+    print("The product is: ", result1)
+
+@timeit
+def product2(a,b):
+    result2 = list()
+    for i in range(0,len(a)):
+        result2.append(a[i]*b[i])
+    print("The product is: ",result2)
+
+
+@timeit
+def product3(a,b):
+    result3 = [i*j for i,j in zip(a,b)]  # Writing the function and its action
+    print("The product is: ", result3)
+
+
+product1(ls1,ls2)
+product2(ls1,ls2)
+product3(ls1,ls2)
+

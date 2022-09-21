@@ -1,0 +1,29 @@
+import time
+import random
+import numpy as np
+import statistics
+
+def timeit(func):
+    def timetakencalc(*args,**kwargs):  # args and kwargs allow to pass as many inputs as possible in the func
+        time_start = time.time()   # curent time
+        func(*args,**kwargs)
+        time_end = time.time()   # Current Time
+        print("Time taken by the function",func.__name__, " is: ", time_end - time_start, " seconds")  # Time difference start time -end time
+
+    return timetakencalc
+
+ls1 = list()
+
+n = 1000
+for i in range(n):
+    ls1.append(random.randint(0,10000))
+
+
+@timeit
+def media_calc(a):
+    print(statistics.median(a))
+
+media_calc(ls1)
+
+
+#Problem1_8f: We sholud use list data type to easily increase number of elements
