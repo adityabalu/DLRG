@@ -1,0 +1,70 @@
+class Robot:
+  
+    def __init__(self,current_position,current_direction,current_time,speed):
+        self.current_position = current_position
+        self.current_direction = current_direction
+        self.current_time = current_time
+        self.speed = speed
+
+    def __repr__(self):
+        return f'Robot(Current Position = {self.current_position}, Current Direction = {self.current_direction}, Current Time = {self.current_time}' 
+
+    def wait(self,time):
+         self.current_time = self.current_time + time
+         return self.current_time
+
+    def move_forward(self,time):
+        
+        current_position1 = [element*(self.speed*time) for element in self.current_direction]    # Multiplying with direction to see the movement
+        self.current_position = [x + y for x,y in zip(self.current_position,current_position1)]   # Adding the new position to current position
+        
+        return self.current_position
+    
+    def rotate_right(self):
+        self.current_direction = [0,-1]
+        return self.current_direction
+    
+    def rotate_left(self):
+        self.current_direction = [0,1]
+        return self.current_direction
+
+    def initial_direction(self):
+        self.current_direction = [1,0]
+        return self.current_direction
+
+    def final_direction(self):
+        self.current_direction = [-1,0]
+        return self.current_direction
+    
+    def move_square(self,side_length):
+        self.move_forward(side_length*2)
+        self.wait(side_length*2)
+        print(self.__repr__())
+        self.rotate_left()
+        print(self.__repr__())
+        self.move_forward(side_length*2)
+        self.wait(side_length*2)
+        print(self.__repr__())
+        self.final_direction()
+        print(self.__repr__())
+        self.move_forward(side_length*2)
+        self.wait(side_length*2)
+        print(self.__repr__())
+        self.rotate_right()
+        print(self.__repr__())
+        self.move_forward(side_length*2)
+        self.wait(side_length*2)
+        print(self.__repr__())
+
+        
+
+initial_state = Robot([0,0],[1,0],0.0,0.5)
+
+print(initial_state.__repr__())
+initial_state.move_square(10.0)
+
+
+
+
+
+#print(initial_state)

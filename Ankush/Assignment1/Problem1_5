@@ -1,0 +1,13 @@
+import numpy as np
+class TetrahedalMesh:
+    
+    def __init__(self, nodal_locations, edge_connectivity):
+        self.nodal_locations = nodal_locations
+        self.edge_conneectivity = edge_connectivity
+
+
+
+mesh1 = TetrahedalMesh({1,2,3},10)
+print(mesh1.nodal_locations)
+
+#file1 = np.loadtxt("/home/ankush/Python_Codes/Assignment1/mesh.dat", unpack = True)
