@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#niraml defined
+**/data/
+
 # C extensions
 *.so
 
