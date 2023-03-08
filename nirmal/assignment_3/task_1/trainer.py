@@ -14,8 +14,8 @@ class MyModel(pl.LightningModule):
         self.mlp = MLP()
         
 
-#b. forward()
-# i. Return the output from each of the three models.
+    #b. forward()
+    # i. Return the output from each of the three models.
     '''
     In PyTorch, calling a module instance like a function (i.e., self.littleCNN(x)) is 
     equivalent to calling the forward function directly (i.e., self.littleCNN.forward(x)). 
@@ -42,7 +42,7 @@ class MyModel(pl.LightningModule):
         big_cnn_out, little_cnn_out, mlp_out = self.forward(x)
         if optimizer_idx == 0:
             loss = nn.functional.cross_entropy(big_cnn_out, y)
-            self.log('big_cnn_loss', loss)
+            self.log('big_cnn_loss', loss, on_step=True, on_epoch=True, prog_bar=True, logger=True)
         elif optimizer_idx == 1:
             loss = nn.functional.cross_entropy(little_cnn_out, y)
             self.log('little_cnn_loss', loss)
