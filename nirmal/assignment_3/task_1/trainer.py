@@ -5,6 +5,11 @@ import pytorch_lightning as pl
 from models import BigCNN, LittleCNN, MLP
 
 
+def accuracy(preds, target):
+    _, pred_class = preds.max(dim=1)
+    accuracy = torch.mean((pred_class == target).float())
+    return accuracy
+
 # create pytorch lightning module
 class MyModel(pl.LightningModule):
     def __init__(self):
@@ -54,6 +59,7 @@ class MyModel(pl.LightningModule):
         # d. validation_step()
         # i. Compute the loss for each model prediction and log them.
 
+
     def validation_step(self, batch, batch_idx):
         x, y = batch
 
@@ -63,14 +69,23 @@ class MyModel(pl.LightningModule):
         little_cnn_loss = nn.functional.cross_entropy(little_cnn_out, y)
         mlp_loss = nn.functional.cross_entropy(mlp_out, y)
 
+        big_cnn_acc = accuracy(big_cnn_out, y)
+        little_cnn_acc = accuracy(little_cnn_out, y)
+        mlp_acc = accuracy(mlp_out, y)
+
         self.log('val_big_cnn_loss', big_cnn_loss)
         self.log('val_little_cnn_loss', little_cnn_loss)
         self.log('val_mlp_loss', mlp_loss)
-        
-        return big_cnn_loss, little_cnn_loss, mlp_loss
+        self.log('val_big_cnn_acc', big_cnn_acc)
+        self.log('val_little_cnn_acc', little_cnn_acc)
+        self.log('val_mlp_acc', mlp_acc)
 
-        # e. configure_optimizers()
-        # i. Initialize an optimizer for each model.
+        return {'val_big_cnn_loss': big_cnn_loss, 
+                'val_little_cnn_loss': little_cnn_loss, 
+                'val_mlp_loss': mlp_loss, 
+                'val_big_cnn_acc': big_cnn_acc, 
+                'val_little_cnn_acc': little_cnn_acc, 
+                'val_mlp_acc': mlp_acc}
 
     def configure_optimizers(self):
         big_cnn_optimizer = torch.optim.Adam(self.big_cnn.parameters(), lr=0.001)

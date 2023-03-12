@@ -5,6 +5,9 @@ __pycache__/
 
 #niraml defined
 **/data/
+**/*log*/
+*pt
+
 
 # C extensions
 *.so
