@@ -7,7 +7,7 @@ __pycache__/
 **/data/
 **/*log*/
 *pt
-
+**/wandb/
 
 # C extensions
 *.so
