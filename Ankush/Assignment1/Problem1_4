@@ -1,0 +1,7 @@
+n = int(input("Enter the chapter number: "))
+ls = list()
+for i in range(n):
+    ls.append("Chapter")
+[print(j,i+1) for i,j in enumerate(ls)]
+   
+    #print(j,i+1)

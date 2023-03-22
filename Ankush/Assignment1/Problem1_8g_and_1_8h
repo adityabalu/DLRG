@@ -1,0 +1,44 @@
+import random
+from scipy.special import rel_entr
+
+ls1 = [] # Defining List
+
+n = 10
+for i in range(n):
+    ls1.append(random.gauss(100,10))
+
+ls2 = [] # Defining List
+
+
+for i in range(n):
+    ls2.append(random.lognormvariate(0,0.25))
+
+ls3 = [] # Defining List
+
+
+for i in range(n):
+    ls3.append(random.normalvariate(100,50))
+
+
+test_dict = {}
+
+#test_keys = ['gauss' , 'lognormvariate' ,'normalvariate']
+
+print(test_dict)
+
+test_dict = {'gauss':ls1, 'lognormvariate':ls2 , 'normalvariate':ls3}
+
+""" for i in range(n):
+        test_dict['gauss']+= ls1[i]
+        i = i+1
+
+ """
+print(test_dict)
+
+print("The KL Divergence btw gauss and lognormvariate is: ",sum(rel_entr(test_dict.get("gauss"), test_dict.get("lognormvariate"))))
+print("The KL Divergence btw gauss and normalvariate is: ",sum(rel_entr(test_dict.get("gauss"), test_dict.get("normalvariate"))))
+print("The KL Divergence btw lognormvariate and normalvariate is: ",sum(rel_entr(test_dict.get("lognormvariate"), test_dict.get("normalvariate"))))
+
+
+# Still need to work on it to finish it. This is without for loop
+

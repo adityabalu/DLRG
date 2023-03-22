@@ -1,0 +1,48 @@
+
+
+f = open("/home/ankush/Python_Codes/Ankush/Assignment1/mesh.dat",mode = 'r')
+#print(f.read())
+node_loc = []
+edge_connect = []
+count = 0
+for line in f:
+    #lines.append(line.strip('\n'))
+    #collaspedstring = ' '.join(line.split())
+    if count < 54877:
+        node_loc.append(' '.join(line.split()))
+        count = count + 1     # Splitting the first part
+    else:
+        edge_connect.append(' '.join(line.split()))
+        count = count + 1    # Splitting the second part
+
+    """ if lines[-1] == '-1':
+        break    """
+
+#print(lines)
+
+# removing unneccesary part from the list
+node_loc.pop()
+del node_loc[:4]
+#print(lines)
+
+# removing uneccessary part from the list
+edge_connect.pop()
+edge_connect.pop()
+del edge_connect[:6]
+del edge_connect[1::2]
+
+#print(edge_connect)
+
+# Getting the nodal locations
+nodal_locations = [line.split() for line in node_loc]
+print(nodal_locations)
+
+edge = [line.split() for line in edge_connect]
+#print(edge) 
+# getting the edge connectivity
+edge_connectivity = [[i[10],i[11],i[12],i[13],i[14],i[15],i[16],i[17]] for i in edge]
+
+print(edge_connectivity)
+
+
+f.close()
