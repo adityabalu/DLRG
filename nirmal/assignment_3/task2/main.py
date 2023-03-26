@@ -65,8 +65,6 @@ val_loader = DataLoader(val_set, batch_size=args.batch_size, shuffle=False, num_
 # Create an instance of the Trainer class with the parsed arguments
 model = it.MyModel(model_and_optimizer)
 
-
-
 task_name = (f'{model_and_optimizer.model}_{model_and_optimizer.optimizer}'
         f'_lr_{model_and_optimizer.learning_rate}'
         f'_batch_{args.batch_size}_epochs_{args.max_epochs}')

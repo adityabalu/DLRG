@@ -4,6 +4,10 @@ import pytorch_lightning as pl
 from models import BigCNN, LittleCNN, MLP
 
 class MyModel(pl.LightningModule):
+    '''
+    This class is a PyTorch Lightning Module. It is a subclass of the LightningModule class, which is a subclass of the PyTorch Module class.
+    The LightningModule class provides a number of useful features that make it easier to train models in PyTorch.
+    '''
     def __init__(self, params):
         super().__init__()
         self.params = params
