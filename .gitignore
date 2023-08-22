@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#niraml defined
+**/data/
+**/*log*/
+*pt
+**/wandb/
+
 # C extensions
 *.so
 
