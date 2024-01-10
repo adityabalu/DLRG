@@ -1,0 +1,17 @@
+import time
+
+def timeit(func):
+    def timetakencalc(*args,**kwargs):
+        time_start = time.time()
+        func(*args,**kwargs)
+        time_end = time.time()
+        print("Time taken by the function is: ", time_end - time_start, " seconds")
+
+    return timetakencalc
+
+@timeit
+def add(a,b):
+    c = a + b
+    print("The sum is", c)
+
+add(4,5)  

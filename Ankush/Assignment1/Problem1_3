@@ -1,0 +1,42 @@
+ls1 = input('Enter first list of elements seprated by space: ')
+ls1 = ls1.split() # Inputting list
+ls2 = input('Enter second list of elements seprated by space: ')
+ls2 = ls2.split()
+#ls3 = [i for i in ls1 if isinstance(i, (int,float))]   # Not sure why not working discuss Aditya
+#ls3 = list()
+ls5 = list()
+#ls3 = [i for i in ls1 if i.isdigit()]
+ls5 = [ls1.index(i) for i in ls1 if i.isdigit()] # finding index of the element which are integers
+print (ls5)
+
+#ls4 = list()
+ls6 = list()
+#ls4 = [i for i in ls2 if i.isdigit()]
+ls6 = [ls2.index(i) for i in ls2 if i.isdigit()]   # finding index of element which are integer
+print(ls6)
+ls7 = list()
+for i in ls5:
+    for j in ls6:
+        if i == j:
+            ls7.append(int(ls1[i])*int(ls2[j])) # if the index is same and the number is a integer multiplyling those numbers
+
+print(ls7)  # print the final list
+
+""" length1 = len(ls3)
+length2 = len(ls4)
+if length1 > length2:
+    diff = length1 - length2
+    ls3 = ls3[:length1 - diff]
+if length2 > length1:
+    diff = length2 - length1
+    ls4 = ls4[:length2 - diff]
+
+print(ls3)
+print(ls4)
+#ls3 = int(ls3)
+#ls4 = int(ls4)
+result = [int(i)*int(j) for i,j in zip(ls3,ls4)]  # Writing the function and its action
+print(result)
+ """
+
+ 

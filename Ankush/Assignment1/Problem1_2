@@ -1,0 +1,20 @@
+
+ls1 = list()   # Defining two lists
+ls2 = list()
+x,y = input("Enter first list: ").split(" ")   # taking tow inputs
+x = x.lower()   # Converting to lower case
+y = y.lower()
+ls1.append(x)   # Adding data to list
+ls1.append(y)
+u,v = input("Enter second list: ").split(" ")   # Getting second list
+u = u.lower()     # converting to lower case
+v = v.lower()
+ls2.append(u)
+ls2.append(v)
+result = [i+" "+ j for i,j in zip(ls1,ls2)]  # Writing the function and its action
+print(result)
+result1 = list()
+# Same action second for loop
+for i,j in zip(ls1,ls2):
+    result1.append(i +" " + j)
+print(result1)

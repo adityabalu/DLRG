@@ -1,0 +1,3 @@
+---
+  geometry: ['triangle','square']
+  numPoints: [10,100]
